@@ -7,6 +7,9 @@ using namespace std;
 class Solution
 {
 
+// Time Complexity:- O(n)
+// Space Complexity:- O(1)
+
 private:
     //----- Reverse Function -------
     Node *reverse(Node *head)
