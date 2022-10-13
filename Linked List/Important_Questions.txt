@@ -1,0 +1,8 @@
+Question:- Why merge sort is prefered over quick sort on linked list?
+Answer:- 
+
+Question:- Why quick sort is prefered over merge sort on arrays?
+Answer:-
+
+Question:- Why quick sort is better than mergesort ?
+Answer:- 
