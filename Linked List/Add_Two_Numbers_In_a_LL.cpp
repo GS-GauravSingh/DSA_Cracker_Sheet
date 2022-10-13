@@ -1,5 +1,9 @@
 class Solution
 {
+
+// Time complexity:- O(N+M), N => length of first LL, M => length of second LL.
+// Space complexity:- O(max(N,M))
+
 private:
 //---------------- reverse function ---------------------------
     struct Node *reverse(struct Node *head)
