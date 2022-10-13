@@ -32,7 +32,7 @@ class Solution
         }
         // after reversing, your prevNode will be your new Head.
         // and head will become tail of Linked List.
-        // and nodeNode will be your head of next k - group.
+        // and nextNode will be your head of next k - group.
         
         //Step 2: make a recursive call for rest of the Linked list.
         if(nextNode != NULL){
