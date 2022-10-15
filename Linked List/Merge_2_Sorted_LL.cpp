@@ -1,8 +1,8 @@
 //----------------------- merge two sorted linked list -----------------------
 
 
-//Time Complexity: O(N+M) where N and M are the sizes of linked lists.
-//Space Complexity: O(N+M)/ size of ans list.
+//Time Complexity: O(N+M), where N and M are the sizes of linked lists.
+//Space Complexity: O(N+M), size of ans list.
 
 
 void insertAtEnd(node *&head, node *&tail, int data)
