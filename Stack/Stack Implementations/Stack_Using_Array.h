@@ -3,6 +3,13 @@
 
 // in this we're going to use template. So, that you can create stack of any data type.
 
+/*
+
+All Methods having constant i.e., O(1) time complexity, except print having O(n) time complexity (because we are printing all elements) .
+
+*/
+
+
 #include <iostream>
 using namespace std;
 
