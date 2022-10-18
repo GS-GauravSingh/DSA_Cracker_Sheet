@@ -99,8 +99,8 @@ public:
         else{
             for (int i = top; i >= 0; i--)
             {
-                cout<<arr[i]<<" ";
-            }cout<<endl;
+                cout<<arr[i]<<"\n";
+            }cout<<"\n";
             
         }
     }
