@@ -37,7 +37,7 @@ public:
     // Stack Operations methods.
 
     // method to push element into stack.
-    void push(int data){
+    void push(T data){
         //checking, if stack has space for element or not
         if(top < size){
             top++; // first increment top, because when array is empty, top will point to -1 and we cannot insert element at index -1.
@@ -73,7 +73,7 @@ public:
     }
 
     // method to get the top element of stack.
-    int peek(){
+    T peek(){
         // if isEmpty() return true, means stack is empty and we cannot see the top element from empty stack.
         if(isEmpty()){
             cout<<"Stack is empty.\n";
