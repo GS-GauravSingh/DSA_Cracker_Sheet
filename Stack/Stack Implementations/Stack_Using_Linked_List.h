@@ -86,6 +86,18 @@ public:
         }
     }
 
+    // method to get size of stack.
+    int size(){
+        int s=0;
+        Node<T>* temp = head;
+        while(temp != NULL){
+            s++;
+            temp = temp -> next;
+        }
+        return s;
+
+    }
+
     // additional method to print Linked List
     void print(){
         if(isEmpty()){
