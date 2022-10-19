@@ -68,6 +68,12 @@ public:
         }
     }
 
+    // method to return the size of stack.
+    int size()
+    {
+        return arr.size();
+    }
+
     // additional method to print vector.
     void print()
     {
