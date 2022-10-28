@@ -5,43 +5,47 @@
 #include <iostream>
 using namespace std;
 
+// forward declaration of class Stack
 template <typename T>
 class Stack;
 
-
-
-//------------------- Node structure for stack ---------------------
+// ------------ Node structure ---------------------------
 template <typename T>
 class Node
 {
 private:
-// Data members.
+    // because we're using a templated class.
     T data;
-    Node<T>* next;
+    Node<T> *next;
+
 public:
-// Constructor.
-    Node(T data){
-        this -> data = data;
-        this -> next = NULL;
+    // constructor
+    Node(T data)
+    {
+        this->data = data;
+        next = NULL;
     }
 
     friend class Stack<T>;
-
 };
 
-
+// ---------------------- Stack Class --------------------
 template <typename T>
 class Stack
 {
 private:
-    Node<T>* head;
+    // all we need is a head pointer.
+    Node<T> *head;
+    int s = 0 ; // to store the size of stack.
+
 public:
-// Constructor.
-    Stack(){
+    // constructor.
+    Stack()
+    {
         head = NULL;
     }
 
-// Methods.
+    // Methods.
 
     // method to push element into stack.
     void push(T data){
@@ -50,68 +54,49 @@ public:
             head = newNode;
         }
         else{
+            // all insertions takes place at head.
             // make newNode your newNode head.
             newNode -> next = head;
             head = newNode;
         }
+
+        s++;
     }
 
     // method to pop element from stack.
     void pop(){
+        // check for underflow condition
         if(head != NULL){
             Node<T>* nodeToDelete = head;
             head = head -> next;
-            delete nodeToDelete;
         }
         else{
             cout<<"Stack Underflow.\n";
         }
     }
 
+    // method to check if stack is empty or not.
+    bool isEmpty(){
+        if(head == NULL){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     // method to get top element of the stack.
-    T peek(){
+    T top(){
         if(isEmpty()){
-            cout<<"Stack is empty, please insert some elements.\n";
+            cout<<"Stack is empty, please insert some elements to get the top element.\n";
         }
         else{
             return head->data;
         }
     }
 
-    // method to check if stack is empty or not.
-    bool isEmpty(){
-        if(head == NULL)return true;
-        else{
-            return false;
-        }
-    }
-
     // method to get size of stack.
     int size(){
-        int s=0;
-        Node<T>* temp = head;
-        while(temp != NULL){
-            s++;
-            temp = temp -> next;
-        }
         return s;
-
     }
-
-    // additional method to print Linked List
-    void print(){
-        if(isEmpty()){
-            cout<<"Stack is empty.\n";
-        }
-        else{
-            Node<T>* temp = head;
-            while(temp != NULL){
-                cout<< temp -> data << "\n";
-                temp = temp -> next;
-            }
-            cout<<"\n";
-        }
-    }
-
-
 };
