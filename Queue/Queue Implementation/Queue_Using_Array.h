@@ -1,93 +1,127 @@
 #include <iostream>
 using namespace std;
 
-// All methods having time complexity  O(1).
-
 template <typename T>
 class Queue
 {
 private:
-    // So, we need,
-    // 1. array to store elements
-    // 2. size (represents size of queue).
-    // 3. front (represents front element of queue).
-    // 4. rear (where we push elements into queue).
+    T *arr;          // to store elements of queue.
+    int sizeOfArray; // represents the capacity of array.
+    int frontElement;       // represent the frontElement (the one element who comes first) element of queue.
+    int rearElement;        // represent the rearElement (last) element of queue.
 
-    int size;  // size of array.
-    T *arr;  // pointer to array.
-    int front; // represent front element of queue.
-    int rear;  // we push elememts into queue from rear.
-    // initially rear and front both points to index 0, it means when front == rear, menas array is empty.
+    int s; // to count the elements present in the array.
 public:
-
-    // Constructor
-    // agar size input me mila toh theik hai, agar nhi mila to default size 10^5 hoga. 
-    Queue(int size = 1e5)
+    // Parameterized Constructor, takes size of array as input if given, if size is not given it will initialize with its default value.
+    Queue(int sizeOfArray = 1e5)
     {
-        this -> size = size;
-        arr = new T[size];
-        front = 0;
-        rear = 0;
+        // 1e5 means 10^5;
+        this->sizeOfArray = sizeOfArray; // setting up the size of array.
+        arr = new T[sizeOfArray];        // because we're using a templated class.
+        frontElement = rearElement = 0;                // initially frontElement and rearElement is 0, because there is no element in the queue.
+
+        s = 0; // initially size of array is 0.
     }
 
-    // push elements into queue.
-    void enqueue(T data){
-        //check if queue is full or not
-        if(rear == size){
-            cout<<"Queue is Full.\n";
+    // Methods,
+
+    // method to push element into queue.
+    void enqueue(T data)
+    {
+        // case 1: check for overflow condition.
+        if (rearElement == sizeOfArray)
+        {
+            cout << "Queue is Full.\n";
         }
-        else{
-            //simply insert element into queue.
-            arr[rear] = data;
-            rear++;
+        else
+        {
+            // if there is a space in queue then,
+            // case 2: simply insert element into queue.
+            arr[rearElement] = data;
+            rearElement++;
         }
+
+        s++;
     }
 
-    // pop elements from queue.
-    void dequeue(){
-        //check if queue is empty or not
-        if(isEmpty()){
-            cout<<"Queue is already empty,Please insert some elements to perform pop() operation.\n";
-
+    // method to pop element from queue.
+    void dequeue()
+    {
+        // case 1: check for underflow condition.
+        if (isEmpty())
+        {
+            cout << "Queue is empty.\n";
         }
-        else{
-            //store the popped element, then set popped element to -1. 
-            // arr[front] = -1;
-            front++;
-
-            // if front == rear means array is empty.
-            if(front == rear){
-                rear = 0;
-                front = 0;
+        else
+        {
+            // if queue is not empty then,
+            // case 2: simply pop element from queue.
+            cout<<"Element ["<<arr[frontElement]<<"] successfully popped.\n";
+            frontElement++;
+            s--; // decrement the size.
+            
+            // check, while popping if frontElement reache the end of the queue.
+            //ex: arr = {a,b,c,d,r}; frontElement = a, rearElement = r;
+            // while popping frontElement reaches to end, means frontElement == rearElement, in that case reinitialize frontElement and rearElement with 0.
+            if(frontElement == rearElement){
+                frontElement = rearElement = 0;
             }
         }
     }
 
-    // return front element
-    T getFront(){
-        //check if queue is empty or not
-        if(isEmpty()){
-            cout<<"Queue is already empty,Please insert some elements to get front element.\n";
+    // method to get the front Element of the queue.
+    T front()
+    {
+        // case 1: check for underflow condition.
+        if (isEmpty())
+        {
+            cout << "Queue is empty.\n";
             return -1;
         }
-        else{
-            return arr[front];
+        else
+        {
+            return arr[frontElement];
         }
     }
 
-    // check for empty queue
-    bool isEmpty(){
-        if(front == rear){
+    // method to get the rear Element of the queue.
+    T rear()
+    {
+        // case 1: check for underflow condition.
+        if (isEmpty())
+        {
+            cout << "Queue is empty.\n";
+            return -1;
+        }
+        else
+        {
+            return arr[rearElement];
+        }
+    }
+
+    // method to get the size of the queue.
+    int size()
+    {
+        return s;
+    }
+
+    // method to get the capacity of the queue.
+    int capacity()
+    {
+        return sizeOfArray;
+    }
+
+    // method to check if queue is empty or not.
+    bool isEmpty()
+    {
+        if (frontElement == rearElement)
+        {
+            // means there is no element is the queue.
             return true;
         }
-        else{
+        else
+        {
             return false;
         }
     }
-
-    // get the size of stck
-    int getSize(){
-        return rear;
-    }
-
 };

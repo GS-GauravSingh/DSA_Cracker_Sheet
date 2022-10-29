@@ -1,155 +1,135 @@
-#include <bits/stdc++.h>
-class Deque
+#include<iostream>
+using namespace std;
+
+template<typename T>
+class Queue
 {
-    int *arr;
-    int front;
-    int rear;
-    int size;
-
+private:
+    T* arr; // to store elements of queue;
+    int s; // to count number of element in the queue.
+    int sizeOfArray; // capacity of array.
+    int frontElement; // front element of queue.
+    int rearElement; // rear element of queue
 public:
-    // Initialize your data structure.
-    Deque(int n)
-    {
-        size = n;
-        arr = new int[n];
-        front = -1;
-        rear = -1;
+    Queue(int size){
+        this -> sizeOfArray = size; // setting up size of array.
+        arr = new T[sizeOfArray];
+
+        // initially array is empty.
+        frontElement = rearElement = -1; 
+        s = 0;
     }
 
-    // Pushes 'X' in the front of the deque. Returns true if it gets pushed into the deque, and false otherwise.
-    bool pushFront(int x)
-    {
-        // check full or not
+    //Methods,
+    // Method to Push 'X' in the front of the deque.
+    void push_front(int data){
+        // check for overflow condition
+        if(isFull())
+        {
+            cout<<"Queue is full.\n";
+        }
+        else if(frontElement == -1)
+        {
+            //queue is empty, hence insert first element
+            frontElement = rearElement = 0;
+        }
+        else if(frontElement == 0 && rearElement != sizeOfArray - 1)
+        {
+            // to maintaing cyclic nature.
+            frontElement = sizeOfArray - 1;
+        }
+        else
+        {
+            // in normal case simply push.
+            frontElement--;
+        }
+
+        arr[frontElement] = data;
+        s++; // increment the size.
+    }
+
+    // Method to Push 'X' in the back/rear of the deque.
+    void push_back(int data){
+        
+        //  check for overflow condition.
         if (isFull())
         {
-            return false;
+            cout << "Queue is Full.\n";
         }
-        else if (isEmpty())
+        else if(frontElement == -1)
         {
-            front = rear = 0;
+            //Queue is empty, hence insert the first element
+            frontElement = rearElement = 0;
         }
-        else if (front == 0 && rear != size - 1)
+        else if(rearElement == sizeOfArray - 1 && frontElement != 0)
         {
-            front = size - 1;
+            // If rear reaches end of queue but the first element is empty.
+            rearElement = 0;
         }
         else
         {
-            front--;
+            // simply push the element
+            rearElement++;
         }
-        arr[front] = x;
-        return true;
+
+        arr[rearElement] = data;
+
+        s++; // increment the size.
     }
 
-    // Pushes 'X' in the back of the deque. Returns true if it gets pushed into the deque, and false otherwise.
-    bool pushRear(int x)
-    {
-        if (isFull())
-        {
-            return false;
+    //method to pop the front element.
+    void pop_front(){
+        //chock for underflow condition
+        if(isEmpty()){
+            cout<<"Queue is empty.\n";
         }
-        else if (isEmpty())
-        {
-            front = rear = 0;
+        else if(frontElement == rearElement)
+        {   
+            // single element is present.
+            frontElement = rearElement = -1;
         }
-        else if (rear == size - 1 && front != 0)
+        else if(frontElement == sizeOfArray - 1)
         {
-            rear = 0;
+            // while popping, if front reached the end of array.
+            frontElement = 0;
         }
         else
         {
-            rear++;
+            // in normal case simply pop the element.
+            frontElement++;
         }
-        arr[rear] = x;
-        return true;
+
+        s--; // decrement the size.
     }
 
-    // Pops an element from the front of the deque. Returns -1 if the deque is empty, otherwise returns the popped element.
-    int popFront()
-    {
-        if (isEmpty())
-        { // to check queue is empty
-            // cout << "Queue is Empty " << endl;
-            return -1;
+    //method to pop the rear/back element.
+    void pop_back(){
+        //chock for underflow condition
+        if(isEmpty()){
+            cout<<"Queue is empty.\n";
         }
-
-        int ans = arr[front];
-        arr[front] = -1;
-
-        if (front == rear)
-        { // single element is present
-            front = rear = -1;
+        else if(frontElement == rearElement)
+        {   
+            // single element is present.
+            frontElement = rearElement = -1;
         }
-        else if (front == size - 1)
+        else if(rearElement == 0)
         {
-            front = 0; // to maintain cyclic nature
+            // while popping, if front reached the end of array.
+            rearElement = sizeOfArray - 1;
         }
         else
-        { // normal flow
-            front++;
-        }
-        return ans;
-    }
-
-    // Pops an element from the back of the deque. Returns -1 if the deque is empty, otherwise returns the popped element.
-    int popRear()
-    {
-        if (isEmpty())
-        { // to check queue is empty
-            // cout << "Queue is Empty " << endl;
-            return -1;
-        }
-
-        int ans = arr[rear];
-        arr[rear] = -1;
-
-        if (front == rear)
-        { // single element is present
-            front = rear = -1;
-        }
-        else if (rear == 0)
         {
-            rear = size - 1; // to maintain cyclic nature
+            // in normal case simply pop the element.
+            rearElement--;
         }
-        else
-        { // normal flow
-            rear--;
-        }
-        return ans;
+
+        s--; // decrement the size.
     }
 
-    // Returns the first element of the deque. If the deque is empty, it returns -1.
-    int getFront()
-    {
-        if (isEmpty())
-        {
-            return -1;
-        }
-        return arr[front];
-    }
-
-    // Returns the last element of the deque. If the deque is empty, it returns -1.
-    int getRear()
-    {
-        if (isEmpty())
-        {
-            return -1;
-        }
-        return arr[rear];
-    }
-
-    // Returns true if the deque is empty. Otherwise returns false.
-    bool isEmpty()
-    {
-        if (front == -1)
-            return true;
-        else
-            return false;
-    }
-
-    // Returns true if the deque is full. Otherwise returns false.
-    bool isFull()
-    {
-        if ((front == 0 && rear == size - 1) || (front != 0 && rear == (front - 1) % (size - 1)))
+    // method to check if queue is empty or not
+    bool isEmpty(){
+        if(frontElement == -1)
         {
             return true;
         }
@@ -157,5 +137,44 @@ public:
         {
             return false;
         }
+    } 
+    // method to check if queue is full or not
+    bool isFull(){
+        if ((frontElement == 0 && rearElement == sizeOfArray - 1) ||
+        (frontElement != 0 && rearElement == (frontElement - 1)%(sizeOfArray - 1)))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    } 
+
+    // method to get the front element
+    T getFront(){
+        if(isEmpty()){
+            cout<<"Queue is empty.\n";
+            return -1;
+        }
+        else{
+            return arr[frontElement];
+        }
     }
+
+    // method to get the rear element
+    T getRear(){
+        if(isEmpty()){
+            cout<<"Queue is empty.\n";
+            return -1;
+        }
+        else{
+            return arr[rearElement];
+        }
+    }
+
+
+    
 };
+
+

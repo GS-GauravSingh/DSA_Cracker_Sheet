@@ -1,20 +1,21 @@
 #include <iostream>
 using namespace std;
 
-// All methods having time complexity  O(1).
-
+// forward decleration of class Queue.
 template <typename T>
 class Queue;
 
-
+// ------------------ Node structure for Queue ------------------
 template <typename T>
 class Node
 {
 private:
+    // Because we're using templated class.
     T data;
     Node<T> *next;
 
 public:
+    // Constructor.
     Node(T data)
     {
         this->data = data;
@@ -24,29 +25,36 @@ public:
     friend class Queue<T>;
 };
 
+// ------------------ Queue Class ------------------
 template <typename T>
 class Queue
 {
 private:
-    // we insert elements from tail.
+    // head is our front element of the queue and popping takes place at head.
     Node<T> *head;
+    // insert elements at tail and it is used to track the rear element.
     Node<T> *tail;
-    int size; // to get the size od Linked List.
 
+    int s; // to count number of elements in the queue.
+    // since we're using linked list there is no size limitation.
 public:
-    // constructor
+    // Constructor
     Queue()
     {
-        head = tail = NULL;
-        size = 0;
+        head = NULL;
+        tail = NULL;
+
+        s = 0;
     }
 
-    // Methods
-    // push elements into queue.
+    // Methods,
+
+    // method to push element into queue.
     void enqueue(T data)
     {
-        // in case of linked List, there is no need to check for overflow conditions.
-        // Simply push element.
+        // there is no need to check for overflow condition.
+        // simply push elements.
+
         Node<T>* newNode = new Node<T>(data);
         if(head == NULL){
             head = tail = newNode;
@@ -56,48 +64,78 @@ public:
             tail = newNode;
         }
 
-        size++;// counting the number of elements.     
+        s++;
     }
 
-    // pop elements from queue.
+    // method to pop element from queue.
     void dequeue()
-    {   
-        // chek for underflow condition.
-        if(isEmpty()){
-            cout<<"Queue is already empty, Please insert some elements to perform pop() operation.\n";
-        }        
-        else{
-            // we need to delete head node.
+    {
+        // case 1: check for underflow condition.
+        if (isEmpty())
+        {
+            cout << "Queue is empty.\n";
+        }
+        else
+        {
+            // if queue is not empty then,
+            // case 2: simply pop element (head) from queue.
+            cout << "Element [" << head -> data << "] successfully popped.\n";
+            s--; // decrement the size.
+            
             Node<T>* nodeToDelete = head;
             head = head -> next;
+            delete nodeToDelete;
         }
     }
 
-    // return front element
-    T getFront()
+    // method to get the front Element of the queue.
+    T front()
     {
-        if(isEmpty()){
-            cout<<"Queue is already empty, Please insert some elements to get the front element.\n";
+        // case 1: check for underflow condition.
+        if (isEmpty())
+        {
+            cout << "Queue is empty.\n";
+            return -1;
         }
-        else{
+        else
+        {
             return head -> data;
         }
     }
 
-    // check for empty queue
-    bool isEmpty()
+    // method to get the rear Element of the queue.
+    T rear()
     {
-        if(head == NULL){
-            return true;
-        }      
-        else{
-            return false;
-        }  
+        // case 1: check for underflow condition.
+        if (isEmpty())
+        {
+            cout << "Queue is empty.\n";
+            return -1;
+        }
+        else
+        {
+            return tail -> data;
+        }
     }
 
-    // get the size of stck
-    int getSize()
+    // method to get the size of the queue.
+    int size()
     {
-        return size;
+        return s;
+    }
+
+
+    // method to check if queue is empty or not.
+    bool isEmpty()
+    {
+        if (head == NULL)
+        {
+            // means there is no element is the queue.
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 };
