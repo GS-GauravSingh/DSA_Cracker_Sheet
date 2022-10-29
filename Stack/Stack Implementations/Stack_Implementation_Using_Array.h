@@ -88,7 +88,7 @@ public:
     // method to get the size of stack.
     int size()
     {
-        return top + 1;
+        return topElement + 1;
     }
 
     // method to check is stack is empty or not.
