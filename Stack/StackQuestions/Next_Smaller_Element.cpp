@@ -97,4 +97,13 @@ vector<int> nextSmallerElementUsingStack(vector<int> &arr)
 
 int main(void)
 {
+    vector<int> arr = {2,1,4,3};
+
+    cout<<"Brute Force Approach:-\n";
+    vector<int> ans = nextSmallerElement(arr);
+    printVec(ans);
+
+    cout<<"Optimized Approach:-\n";
+    ans = nextSmallerElementUsingStack(arr);
+    printVec(ans);
 }
