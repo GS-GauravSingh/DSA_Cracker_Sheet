@@ -103,6 +103,9 @@ Step:-
 1. find next and prev smaller element for current bar.
 2. then the width is equal to the difference b/w indexes of next and prev smaller element.
 
+
+Time complexity:- O(n)
+Space complexity:- O(n)
 */
 // Next Smaller element
 vector<int> nextSmallerElement(vector<int> &arr)
