@@ -23,12 +23,18 @@ Next window me, -8 pop ho gya and 3 push ho gya, {2, 3} = 0 (does not contain a 
 
 Jais Jaise hum next window me jayenge ek element add of dequeue me back se (push_back()) and ek element remove hoga front se (pop_front()).
 
+
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
-/* Function to find first -ve integer in window of K */
+/* Function to find first -ve integer in window of K 
+
+ Time Complexity:- O(n)
+ Space Complexity:- O(n)
+ 
+*/
 vector<long long> printFirstNegativeInteger(long long int arr[], long long int N, long long int K)
 {
     deque<long long int> dq;
