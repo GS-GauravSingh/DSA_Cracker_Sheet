@@ -121,6 +121,10 @@ while traversing the infix expression if we encounter,
 }
 */
 
+
+// Time Complexity: O(N), where N is the size of the infix expression
+// Auxiliary Space: O(N)
+
 #include <bits/stdc++.h>
 using namespace std;
 
