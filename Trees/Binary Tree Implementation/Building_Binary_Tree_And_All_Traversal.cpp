@@ -87,6 +87,28 @@ first we print the root node present at level 0, then we print the elements pres
 
 */
 
+/*
+
+Complexities :- 
+
+1. InOrder Traversal :- 
+Time Complexity:- O(n)
+Space Complexity:- O(h), h is the height of the tree. 
+
+2. PreOrder Traversal :- 
+Time Complexity:- O(n)
+Space Complexity:- O(h), h is the height of the tree. 
+
+3. PostOrder Traversal :- 
+Time Complexity:- O(n)
+Space Complexity:- O(h), h is the height of the tree. 
+
+4. LevelOrder Traversal :- 
+Time Complexity:- O(n)
+Space Complexity:- O(n), n is teh size of queue.
+
+*/
+
 /* InOrder Traversal :- Recursive function for printing Tree. */
 void InOrder_Traversal(Node *root)
 {

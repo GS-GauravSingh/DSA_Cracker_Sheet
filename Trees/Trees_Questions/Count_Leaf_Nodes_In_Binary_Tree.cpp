@@ -48,6 +48,9 @@ Node *buildTree(Node *root)
 
 
 /* InOrder Traversal :- Recursive function for printing Tree. */
+
+// Time Complexity:- O(n)
+// Space Complexity:- O(h), h is the height of the tree. 
 void InOrder_Traversal(Node *root, int &count)
 {
     // Base Case
