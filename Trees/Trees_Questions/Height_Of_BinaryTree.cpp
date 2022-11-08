@@ -101,21 +101,24 @@ struct Node
 };
 */
 
-
 class Solution
 {
     /*
     Height of Binary Tree:- is the maximum levels we have in a tree.
 
-    Approach:- traverse the tree using level order traversal and count the levels.
+    Approach 1:- traverse the tree using level order traversal and count the levels.
 
     height of binary tree = number of levels in a tree.
-    
-    */
-   // Time and Space of Level Order Traversal is O(N).
 
-   // Time Complexity:- O(N)
-   // Space Complexity:- O(N)
+    Approach 2:- calculate the height of left subtree and right subtree,
+    take the maximum of left and right and add 1 (root node).
+    int ans = max(left, right) + 1; // +1 is for adding root node.
+
+    */
+    // Time and Space of Level Order Traversal is O(N).
+
+    // Time Complexity:- O(N)
+    // Space Complexity:- O(N)
     void LevelOrderTraversal(Node *root, int &height)
     {
         queue<Node *> q;
@@ -153,7 +156,8 @@ class Solution
 
 public:
     // Function to find the height of a binary tree.
-    int height(struct Node *root)
+    // using level Order Traversal
+    int height1(struct Node *root)
     {
         // Base Cases
         if (root == NULL)
@@ -169,6 +173,36 @@ public:
         LevelOrderTraversal(root, height);
         return height;
     }
+
+    // Approach 2:- code,
+    // height of BT = max(heightOf(left Subtree), heightOf(right Subtree)) + 1; // +1 for adding root node.
+
+    // Time Complexity:- O(N)
+    // Space Complexity:- O(H), H is the height of the tree.
+
+    
+    int height2(struct Node *root)
+    {
+        // Base Cases
+        if (root == NULL)
+        {
+            return 0;
+        }
+
+        // Recursive case
+
+        // Calculating the height of left subtree
+        int left = height(root->left);
+
+        // Calculating the height of right subtree
+        int right = height(root->right);
+
+        // take the maximum of left and right subtree and add 1 for root node.
+        int height = max(left, right) + 1;
+
+        // return height
+        return height;
+    }
 };
 
 //{ Driver Code Starts.
@@ -182,7 +216,7 @@ int main()
         getline(cin, treeString);
         Node *root = buildTree(treeString);
         Solution ob;
-        cout << ob.height(root) << endl;
+        cout << ob.height1(root) << endl;
     }
     return 0;
 }
