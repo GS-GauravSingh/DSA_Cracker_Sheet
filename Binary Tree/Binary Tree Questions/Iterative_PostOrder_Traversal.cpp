@@ -3,7 +3,7 @@
 using namespace std;
 
 // PostOrder Traversal :- Left, Right, Root
-// Time Complexity:- O(n)
+// Time Complexity:- O(2*n)
 // Space Complexity:- O(n)
 void Iterative_PostOrder_Traversal(Node *root)
 {
