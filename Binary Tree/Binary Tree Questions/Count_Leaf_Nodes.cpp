@@ -5,6 +5,10 @@ using namespace std;
 /* Function To Count Leaf Nodes */
 /*
 Approach:- Traverse the tree, While traversing check if the current nodes has no children it means it is a leaf node otherwise not.
+
+
+Time Complexity:- O(n)
+Space Complexity:- O(h), h is the height of the tree. 
 */
 void InOrderTraversal(Node *root, int &count)
 {
@@ -25,7 +29,6 @@ void InOrderTraversal(Node *root, int &count)
 
 int main()
 {
-    Node *root = NULL;
     /*
     Exmaple TestCases:-
 
@@ -46,6 +49,7 @@ int main()
     */
 
     // Building tree
+    Node *root = NULL;
     BinaryTree bt;
     bt.BuildTree_PreOrder(root);
 
