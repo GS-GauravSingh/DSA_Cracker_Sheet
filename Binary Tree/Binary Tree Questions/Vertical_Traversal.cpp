@@ -65,7 +65,8 @@ Now, print all vector in single line in sorted order(sort according to number li
 Answer = {4,2,1,5,6,3,8,7,9}
 our answer is same as Output:- 4 2 1 5 6 3 8 7 9
 
-
+Expected Time Complexity: O(N)
+Expected Auxiliary Space: O(N)
 */
 
 #include <bits/stdc++.h>
