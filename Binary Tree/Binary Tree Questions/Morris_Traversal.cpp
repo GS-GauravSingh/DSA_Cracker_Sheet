@@ -11,7 +11,7 @@ while(current != NULL){
     }
     else{
         // if current -> left exist's.
-        // find predecessor :- current ke left me jao ek bar or current -> left se jo rightmost node hogi vo predecessor hai.
+        // find inorder predecessor :- current ke left me jao ek bar or current -> left se jo rightmost node hogi vo predecessor hai.
 
         prdecessor = find(current);
 
@@ -64,7 +64,7 @@ void MorrisTraversal(Node *root)
     while (current != NULL)
     {
 
-        // Step 3:- if current -> left exist's,
+        // Step 3:- if current -> left does not exist's,
         // then print current -> data and move to right.
         if (current->left == NULL)
         {
@@ -73,8 +73,8 @@ void MorrisTraversal(Node *root)
         }
         else
         {
-            // Step 4:- if current -> left doesn't exist's,
-            // step 4.1:- find predecessor;
+            // Step 4:- if current -> left exist's,
+            // step 4.1:- find inorder predecessor;
             // current ke left me jao ek bar or current -> left se jo rightmost node hogi vo predecessor hai.
             predecessor = current->left;
             while (predecessor->right != NULL && predecessor->right != current)
