@@ -9,7 +9,7 @@ in-order = left, root, right
 post-order = left, right, root
 
 
-Time Complexity:- O(N^2)
+Time Complexity:- O(N log N)
 Space Complexity:- O(N)
 */
 

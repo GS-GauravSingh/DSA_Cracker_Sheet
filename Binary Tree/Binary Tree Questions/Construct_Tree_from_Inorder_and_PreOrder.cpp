@@ -21,7 +21,7 @@ Space Complexity:- O(N)
 To optimized this code, use map instead of iterating everytime in inorder array to find position of root element.
 
 after using map
-Time Complexity:- O(N)
+Time Complexity:- O(N log N)
 Space Complexity:- O(N)
  */
 int findPosition(int in[], int element, int n)
