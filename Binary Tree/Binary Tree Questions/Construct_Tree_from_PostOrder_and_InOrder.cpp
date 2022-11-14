@@ -33,6 +33,8 @@ Node *solve(int in[], int post[], int &index, int inorderStart, int inorderEnd, 
     int position = nodeIndex[element];
 
     // recursive calls
+    // in case of inorder and postorder build,
+    // first build right subtree then left subtree.
     root->right = solve(in, post, index, position + 1, inorderEnd, n, nodeIndex);
     root->left = solve(in, post, index, inorderStart, position - 1, n, nodeIndex);
 
