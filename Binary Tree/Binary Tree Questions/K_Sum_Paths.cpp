@@ -45,7 +45,7 @@ The following paths sum to K.
 Since the answer may be very large, compute it modulo 10^9 + 7.
 
 
-Expected Time Complexity: O(N)
+Expected Time Complexity: O(N^2)
 Expected Auxiliary Space: O(Height of Tree)
 */
 
@@ -56,7 +56,7 @@ using namespace std;
 /*
 Approach:- find all the paths having sum equal to k.
 
-Time Complexity:- O(N)
+Time Complexity:- O(N^2)
 Space Complexity:- O(h), h is the height of the tree.
 */
 void solve(Node *root, int k, int &count, vector<int> path)
