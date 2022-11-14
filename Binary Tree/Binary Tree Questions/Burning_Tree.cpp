@@ -44,7 +44,7 @@ To start burning you need 2 additional data structure:-
 1. map to track if node is visited or not.
 2. queue to traverse with target node.
 
-Time Complexity:- O(N)
+Time Complexity:- O(N log n)
 Space Complexity:- O(height of tree)
 */
 
