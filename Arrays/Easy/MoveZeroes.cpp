@@ -56,7 +56,7 @@ public:
         {
             if (nums[i] == 0 && nums[j] == 0)
             {
-                // if both are 0, then increment both.
+                // if both are 0, then increment j.
                 j++;
             }
             else if (nums[i] == 0 && nums[j] != 0)
